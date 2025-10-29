@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from './Button';
+// import Button from './Button';
 
 function Header() {
   return (
     <div>
-      <Button text={'Login'} />
+      {/* <Button text={'Login'} /> */}
     </div>
   );
 }
