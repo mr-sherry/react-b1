@@ -1,53 +1,70 @@
 import { useEffect, useState } from 'react';
+import SimpleCircleSpinner from './Components/Loader/Loader';
 
 function App() {
-  const [counter, setCounter] = useState(0);
-  const [data, setData] = useState();
-  const [colors, setColors] = useState('red');
-  function count() {
-    setCounter(counter + 1);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  async function getData() {
+    try {
+      let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      let dataGot = await response.json();
+
+      setData(dataGot);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   }
+  console.log(data);
 
   useEffect(() => {
-    let array = ['black', 'blue', 'green', 'yellow'];
-    const interval = setInterval(() => {
-      console.log('interval running');
-      let randomNum = (Math.random() * array.length).toFixed();
-      console.log(randomNum);
-      setColors(array[randomNum]);
-    }, 1000);
-
-    const timeout = setTimeout(() => {
-      console.log('cleaning after 10s');
-      clearInterval(interval);
-    }, 10000);
+    let timer = setTimeout(() => {
+      getData();
+    }, 2000);
 
     return () => {
-      clearTimeout(timeout);
+      clearTimeout(timer);
     };
   }, []);
 
-  //chnage this color chnager to make colors slide left to right on by one after every one second
-
-  // useEffect(() => {
-  //   first
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [])
+  //https://jsonplaceholder.typicode.com/
 
   return (
-    <div>
-      <div
-        style={{
-          width: '100px',
-          height: '100px',
-          border: '2px solid black',
-          backgroundColor: colors,
-        }}
-      ></div>
-      <button onClick={count}>hello {counter}</button>
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '10px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}
+    >
+      {loading ? (
+        <h1>
+          <SimpleCircleSpinner
+            size={40}
+            speed={1.5}
+            className='text-indigo-600'
+          />
+        </h1>
+      ) : data ? (
+        data.map((post, index) => (
+          <div
+            key={index}
+            style={{ width: '20%', border: '2px solid black', padding: '20px' }}
+          >
+            <h2>{post.title}</h2>
+            <p>{post.body}</p>
+          </div>
+        ))
+      ) : (
+        <h1>{error.message}</h1>
+      )}
     </div>
   );
 }
