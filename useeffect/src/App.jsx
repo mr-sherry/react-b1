@@ -1,16 +1,43 @@
-import { useState } from 'react';
-import Button from './Components/Button';
+import Card from './Components/Cards/Card';
+import Card1 from './Components/Cards/Card1';
+import UserefHook from './Components/UserefHook';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
-      <h1>btn clicked times:{count}</h1>
-      hello
-      <Button text={'submit'} click={setCount} />
-      add input in button component and show input value in app page as h1 by
-      lifting value up from button component to app
+      {/* <Card title={'title here'}>
+        <div>
+          <h1>hello</h1>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+            voluptates hic voluptatum doloribus enim tempora excepturi maxime
+            totam? Delectus, ipsum? Amet pariatur vitae repellat recusandae
+            soluta cupiditate libero neque magni?
+          </p>
+          <button>hello</button>
+        </div>
+      </Card> */}
+
+      {/* <Card1
+        heading={'hello from c1'}
+        para={'i am paragraph'}
+        text={'click me'}
+      />
+
+      <Card>
+        <div>
+          <img src='' alt='' />
+          <img src='' alt='' />
+          <img src='' alt='' />
+          <h2>hello</h2>
+          <h2>hello</h2>
+          <h2>hello</h2>
+          <h2>hello</h2>
+          <h2>hello</h2>
+        </div>
+      </Card> */}
+
+      <UserefHook />
     </div>
   );
 }
