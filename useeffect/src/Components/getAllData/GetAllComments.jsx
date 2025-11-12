@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function GetAllComments() {
-  return (
-    <div>GetAllComments</div>
-  )
+  return <div>GetAllComments</div>;
 }
 
-export default GetAllComments
+export default GetAllComments;
