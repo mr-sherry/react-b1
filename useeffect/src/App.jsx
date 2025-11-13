@@ -9,6 +9,9 @@ import Home from './Pages/Home';
 import Contact from './Pages/Contact';
 import Team from './Pages/Team';
 import GetAllComments from './Components/getAllData/GetAllComments';
+import NotFound from './Pages/NotFound';
+import Blogs from './Pages/Blogs';
+import BlogDetails from './Pages/BlogDetsils/BlogDetails';
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
         </Route> */}
         <Route path='/cards' element={<Card />} />
         <Route path='/cards/card1' element={<Team />} />
+        <Route path='/blogs' element={<Blogs />} />
+        <Route path='/blogs/:blogId' element={<BlogDetails />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
     </>

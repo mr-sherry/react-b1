@@ -1,7 +1,8 @@
 import React, { Children } from 'react';
 import styles from './Card.module.css';
+import { Link } from 'react-router-dom';
 
-function Card({ children, title }) {
+function Card({ children, title, blogNum }) {
   return (
     <div className={styles.card}>
       <img
@@ -10,7 +11,9 @@ function Card({ children, title }) {
         width={300}
       />
       {children}
-      <h2>{title}</h2>
+      <Link to={`/blogs/${blogNum}`}>
+        <h2>{title}</h2>
+      </Link>
     </div>
   );
 }
